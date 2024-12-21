@@ -69,6 +69,38 @@ void PassingEnergyScorer::EndOfEvent(G4HCofThisEvent*) {
 }
 
 
+// TruelyPassingEnergyScorer implementation
+TruelyPassingEnergyScorer::TruelyPassingEnergyScorer(const G4String& name,const G4String& scorer, G4int depth)
+    : G4VPrimitiveScorer(name, depth),fHitsMap(nullptr),scorerName(scorer) {}
+
+TruelyPassingEnergyScorer::~TruelyPassingEnergyScorer() {}
+
+void TruelyPassingEnergyScorer::Initialize(G4HCofThisEvent* HCE) {
+    fHitsMap = new G4THitsMap<G4double>(GetMultiFunctionalDetector()->GetName(), GetName());
+    G4int hcID = GetCollectionID(0);
+    HCE->AddHitsCollection(hcID, fHitsMap);
+}
+
+G4bool TruelyPassingEnergyScorer::ProcessHits(G4Step* aStep, G4TouchableHistory*) {
+    // 获取 preVolume 和 postVolume
+    G4VPhysicalVolume* preVolume = aStep->GetPreStepPoint()->GetTouchable()->GetVolume();
+    G4VPhysicalVolume* postVolume = aStep->GetPostStepPoint()->GetTouchable()->GetVolume();
+
+    // 获取动量方向
+    G4ThreeVector momentumDirection = aStep->GetPreStepPoint()->GetMomentumDirection();
+    // 检查 preVolume，动量方向是否向下（Z 轴方向 < 0），并且粒子是否离开当前体积
+    if (preVolume->GetName() == scorerName && momentumDirection.z() < 0 && preVolume != postVolume) {
+        G4double energy = aStep->GetPreStepPoint()->GetKineticEnergy();
+        G4int copyNo = preVolume->GetCopyNo();
+        fHitsMap->add(copyNo, energy);     
+    }
+    return true;
+}
+
+void TruelyPassingEnergyScorer::EndOfEvent(G4HCofThisEvent*) {
+}
+
+
 // PassingEnergyScorer_Secondary implementation
 PassingEnergyScorer_Secondary::PassingEnergyScorer_Secondary(const G4String& name,const G4String& scorer, G4int depth)
     : G4VPrimitiveScorer(name, depth),fHitsMap(nullptr),scorerName(scorer) {}

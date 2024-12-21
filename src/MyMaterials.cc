@@ -51,7 +51,6 @@ G4Material* MyMaterials::Graphite()
 }
 
 G4Material* MyMaterials::PEEK()
-// Graphite, property data from https://poco.entegris.com/content/dam/poco/resources/reference-materials/brochures/brochure-graphite-properties-and-characteristics-11043.pdf
 {
   G4double a, z, density;
   G4int nelements;
