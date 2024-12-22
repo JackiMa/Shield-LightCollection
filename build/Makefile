@@ -574,6 +574,60 @@ src/MyMaterials.cc.s:
 	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/MyMaterials.cc.s
 .PHONY : src/MyMaterials.cc.s
 
+src/MyTrackInfo.o: src/MyTrackInfo.cc.o
+
+.PHONY : src/MyTrackInfo.o
+
+# target to build an object file
+src/MyTrackInfo.cc.o:
+	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/MyTrackInfo.cc.o
+.PHONY : src/MyTrackInfo.cc.o
+
+src/MyTrackInfo.i: src/MyTrackInfo.cc.i
+
+.PHONY : src/MyTrackInfo.i
+
+# target to preprocess a source file
+src/MyTrackInfo.cc.i:
+	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/MyTrackInfo.cc.i
+.PHONY : src/MyTrackInfo.cc.i
+
+src/MyTrackInfo.s: src/MyTrackInfo.cc.s
+
+.PHONY : src/MyTrackInfo.s
+
+# target to generate assembly for a file
+src/MyTrackInfo.cc.s:
+	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/MyTrackInfo.cc.s
+.PHONY : src/MyTrackInfo.cc.s
+
+src/MyTrackingAction.o: src/MyTrackingAction.cc.o
+
+.PHONY : src/MyTrackingAction.o
+
+# target to build an object file
+src/MyTrackingAction.cc.o:
+	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/MyTrackingAction.cc.o
+.PHONY : src/MyTrackingAction.cc.o
+
+src/MyTrackingAction.i: src/MyTrackingAction.cc.i
+
+.PHONY : src/MyTrackingAction.i
+
+# target to preprocess a source file
+src/MyTrackingAction.cc.i:
+	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/MyTrackingAction.cc.i
+.PHONY : src/MyTrackingAction.cc.i
+
+src/MyTrackingAction.s: src/MyTrackingAction.cc.s
+
+.PHONY : src/MyTrackingAction.s
+
+# target to generate assembly for a file
+src/MyTrackingAction.cc.s:
+	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/MyTrackingAction.cc.s
+.PHONY : src/MyTrackingAction.cc.s
+
 src/utilities.o: src/utilities.cc.o
 
 .PHONY : src/utilities.o
@@ -659,6 +713,12 @@ help:
 	@echo "... src/MyMaterials.o"
 	@echo "... src/MyMaterials.i"
 	@echo "... src/MyMaterials.s"
+	@echo "... src/MyTrackInfo.o"
+	@echo "... src/MyTrackInfo.i"
+	@echo "... src/MyTrackInfo.s"
+	@echo "... src/MyTrackingAction.o"
+	@echo "... src/MyTrackingAction.i"
+	@echo "... src/MyTrackingAction.s"
 	@echo "... src/utilities.o"
 	@echo "... src/utilities.i"
 	@echo "... src/utilities.s"

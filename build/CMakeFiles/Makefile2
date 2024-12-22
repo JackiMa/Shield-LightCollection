@@ -74,12 +74,12 @@ clean: CMakeFiles/LightCollection.dir/clean
 CMakeFiles/LightCollection.dir/all:
 	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/depend
 	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wsl2/myGeant4/LightCollect/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target LightCollection"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wsl2/myGeant4/LightCollect/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19 "Built target LightCollection"
 .PHONY : CMakeFiles/LightCollection.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/LightCollection.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wsl2/myGeant4/LightCollect/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wsl2/myGeant4/LightCollect/build/CMakeFiles 19
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/LightCollection.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/wsl2/myGeant4/LightCollect/build/CMakeFiles 0
 .PHONY : CMakeFiles/LightCollection.dir/rule

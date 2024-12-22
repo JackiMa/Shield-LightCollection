@@ -41,7 +41,7 @@ class LightCollectionSteppingAction : public G4UserSteppingAction
   ~LightCollectionSteppingAction();
 
   void UserSteppingAction(const G4Step*) override;
-
+  
  private:
   LightCollectionEventAction* fEventAction;
 };

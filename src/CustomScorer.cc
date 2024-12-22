@@ -6,6 +6,7 @@
 #include "G4AnalysisManager.hh"
 
 #include "MyPhysicalVolume.hh"
+#include "MyTrackInfo.hh"
 #include "CustomScorer.hh"
 #include "utilities.hh"
 
@@ -82,18 +83,42 @@ void TruelyPassingEnergyScorer::Initialize(G4HCofThisEvent* HCE) {
 }
 
 G4bool TruelyPassingEnergyScorer::ProcessHits(G4Step* aStep, G4TouchableHistory*) {
-    // 获取 preVolume 和 postVolume
-    G4VPhysicalVolume* preVolume = aStep->GetPreStepPoint()->GetTouchable()->GetVolume();
+    // 获取 pre/post volume
+    G4VPhysicalVolume* preVolume  = aStep->GetPreStepPoint()->GetTouchable()->GetVolume();
     G4VPhysicalVolume* postVolume = aStep->GetPostStepPoint()->GetTouchable()->GetVolume();
 
-    // 获取动量方向
-    G4ThreeVector momentumDirection = aStep->GetPreStepPoint()->GetMomentumDirection();
-    // 检查 preVolume，动量方向是否向下（Z 轴方向 < 0），并且粒子是否离开当前体积
-    if (preVolume->GetName() == scorerName && momentumDirection.z() < 0 && preVolume != postVolume) {
+    // 安全性检查
+    if(!preVolume || !postVolume) return false;
+
+    // 获取粒子的动量方向
+    G4ThreeVector momDir = aStep->GetPreStepPoint()->GetMomentumDirection();
+
+    // 获取 Track 以及其自定义Track信息
+    G4Track* theTrack = aStep->GetTrack();
+    MyTrackInfo* trackInfo = dynamic_cast<MyTrackInfo*>( theTrack->GetUserInformation() );
+    if(!trackInfo) {
+        // 如果没有 MyTrackInfo，就无法识别是否重复统计，这里直接 return
+        return false;
+    }
+
+    // 如果已经标记 "HasPassedLayer = true"，说明之前已经通过过此层，不再统计
+    if(trackInfo->HasPassedLayer(scorerName)) {
+        return false;
+    }
+
+    // 检查：preVolume是不是我们感兴趣的层？动量方向是不是向下 (z<0)？并且这一步要离开该体积 (preVolume != postVolume)？
+    if(preVolume->GetName() == scorerName &&
+       momDir.z() < 0.0 &&
+       preVolume != postVolume)
+    {
         G4double energy = aStep->GetPreStepPoint()->GetKineticEnergy();
         G4int copyNo = preVolume->GetCopyNo();
-        fHitsMap->add(copyNo, energy);     
+        fHitsMap->add(copyNo, energy);  
+
+        // 标记本 Track“已经通过此层”
+        trackInfo->SetHasPassedLayer(scorerName, true);
     }
+
     return true;
 }
 

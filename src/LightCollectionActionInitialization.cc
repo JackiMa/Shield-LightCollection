@@ -34,6 +34,7 @@
 #include "LightCollectionStackingAction.hh"
 #include "LightCollectionSteppingAction.hh"
 #include "LightCollectionDetectorConstruction.hh"
+#include "MyTrackingAction.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 LightCollectionActionInitialization::LightCollectionActionInitialization()
@@ -59,5 +60,6 @@ void LightCollectionActionInitialization::Build() const
   LightCollectionEventAction* event = new LightCollectionEventAction();
   SetUserAction(event);
   SetUserAction(new LightCollectionSteppingAction(event));
+  SetUserAction(new MyTrackingAction());
   SetUserAction(new LightCollectionStackingAction());
 }

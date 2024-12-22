@@ -37,8 +37,10 @@
 #include "G4Step.hh"
 #include "G4Track.hh"
 #include "G4AnalysisManager.hh"
+#include <vector>
 
 #include "config.hh"
+#include "MyTrackInfo.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -53,6 +55,39 @@ LightCollectionSteppingAction::~LightCollectionSteppingAction() {}
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 void LightCollectionSteppingAction::UserSteppingAction(const G4Step* step)
 {
+
+    // ----------------------------------------------------
+    // 对次级粒子进行标记，判断是否已经穿越某层SD
+    // ----------------------------------------------------
+    // 母粒子 track
+    G4Track* theTrack = step->GetTrack();
+    MyTrackInfo* parentInfo = dynamic_cast<MyTrackInfo*>(theTrack->GetUserInformation());
+
+    // 获取次级粒子列表
+    const std::vector<const G4Track*>* secondaries = step->GetSecondaryInCurrentStep();
+    if(!secondaries || secondaries->empty()) return;
+
+    // 遍历所有次级粒子
+    for (size_t i = 0; i < secondaries->size(); i++)
+    {
+        G4Track* childTrack = const_cast<G4Track*>((*secondaries)[i]);
+        if(!childTrack) continue;
+
+        // 为次级粒子分配新的 MyTrackInfo
+        MyTrackInfo* childInfo = new MyTrackInfo();
+        // 如果母粒子有标记，则继承
+        if(parentInfo) {
+            childInfo->InheritPassedLayers(parentInfo);
+        }
+
+        // 将 trackInfo 附加到二次粒子
+        childTrack->SetUserInformation(childInfo);
+    }
+
+    // ----------------------------------------------------
+    // 上面是对次级粒子进行标记，判断是否已经穿越某层SD的代码
+    // ----------------------------------------------------
+
     static const G4ParticleDefinition* opticalphoton = G4OpticalPhoton::OpticalPhotonDefinition();
     const G4ParticleDefinition* particleDef = step->GetTrack()->GetParticleDefinition();
 
@@ -159,6 +194,9 @@ void LightCollectionSteppingAction::UserSteppingAction(const G4Step* step)
         
     }
     }
+
+   
+    
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

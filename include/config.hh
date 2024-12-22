@@ -44,10 +44,18 @@ inline G4double g_shieldX = 0.99 * g_worldX;
 inline G4double g_shieldY = 0.99 * g_worldY;
 inline std::vector<ShieldLayer> g_custom_shield = {     // 自定义遮挡层
     {1*um, MyMaterials::Vacuum()},
-    {100*um, MyMaterials::Aluminium()},
-    {100*um, MyMaterials::Aluminium()},
-    {100*um, MyMaterials::Aluminium()},
-    {2*cm, MyMaterials::Copper()}
+    {0.1*mm, MyMaterials::Copper()},
+    {0.1*mm, MyMaterials::Copper()},
+    {0.1*mm, MyMaterials::Copper()},
+    {0.1*mm, MyMaterials::Copper()},
+    {0.1*mm, MyMaterials::Copper()},
+    {0.1*mm, MyMaterials::Copper()},
+    {0.1*mm, MyMaterials::Copper()},
+    {0.1*mm, MyMaterials::Copper()},
+    {0.1*mm, MyMaterials::Copper()},
+    {0.1*mm, MyMaterials::Copper()},
+    {0.1*mm, MyMaterials::Copper()}
+
     }; 
 inline G4int g_shield_layers = g_custom_shield.size();                                                             // 遮挡层层数n
 inline G4double g_shield_thickness = std::accumulate(g_custom_shield.begin(), g_custom_shield.end(), 0.0, [](double sum, const ShieldLayer& layer) {return sum + layer.thickness;});
