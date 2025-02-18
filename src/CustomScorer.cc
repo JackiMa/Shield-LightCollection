@@ -162,6 +162,71 @@ void PassingEnergyScorer_Secondary::EndOfEvent(G4HCofThisEvent*) {
 }
 
 
+
+
+// TruelyPassingEnergyScorer_Secondary implementation
+TruelyPassingEnergyScorer_Secondary::TruelyPassingEnergyScorer_Secondary(const G4String& name,const G4String& scorer, G4int depth)
+    : G4VPrimitiveScorer(name, depth),fHitsMap(nullptr),scorerName(scorer) {}
+
+TruelyPassingEnergyScorer_Secondary::~TruelyPassingEnergyScorer_Secondary() {}
+
+void TruelyPassingEnergyScorer_Secondary::Initialize(G4HCofThisEvent* HCE) {
+    fHitsMap = new G4THitsMap<G4double>(GetMultiFunctionalDetector()->GetName(), GetName());
+    G4int hcID = GetCollectionID(0);
+    HCE->AddHitsCollection(hcID, fHitsMap);
+}
+
+G4bool TruelyPassingEnergyScorer_Secondary::ProcessHits(G4Step* aStep, G4TouchableHistory*) {
+    // 获取 pre/post volume
+    G4VPhysicalVolume* preVolume  = aStep->GetPreStepPoint()->GetTouchable()->GetVolume();
+    G4VPhysicalVolume* postVolume = aStep->GetPostStepPoint()->GetTouchable()->GetVolume();
+
+    // 安全性检查
+    if(!preVolume || !postVolume) return false;
+
+    // 获取粒子的动量方向
+    G4ThreeVector momDir = aStep->GetPreStepPoint()->GetMomentumDirection();
+
+    // 获取粒子的 ParentID
+    G4int parentID = aStep->GetTrack()->GetParentID();
+
+    // 获取 Track 以及其自定义Track信息
+    G4Track* theTrack = aStep->GetTrack();
+    MyTrackInfo* trackInfo = dynamic_cast<MyTrackInfo*>( theTrack->GetUserInformation() );
+    if(!trackInfo) {
+        // 如果没有 MyTrackInfo，就无法识别是否重复统计，这里直接 return
+        return false;
+    }
+
+    // 如果已经标记 "HasPassedLayer_secondary = true"，说明之前已经通过过此层，不再统计
+    if(trackInfo->HasPassedLayer_secondary(scorerName)) {
+        return false;
+    }
+
+    if(parentID <= 0) {
+        // 如果不是次级粒子，直接 return
+        return false;
+    }
+
+    // 检查：preVolume是不是我们感兴趣的层？动量方向是不是向下 (z<0)？并且这一步要离开该体积 (preVolume != postVolume)？
+    if(preVolume->GetName() == scorerName &&
+       momDir.z() < 0.0 &&
+       preVolume != postVolume)
+    {
+        G4double energy = aStep->GetPreStepPoint()->GetKineticEnergy();
+        G4int copyNo = preVolume->GetCopyNo();
+        fHitsMap->add(copyNo, energy);  
+
+        // 标记本 Track“已经通过此层”
+        trackInfo->SetHasPassedLayer(scorerName, true);
+    }
+
+    return true;
+}
+
+void TruelyPassingEnergyScorer_Secondary::EndOfEvent(G4HCofThisEvent*) {
+}
+
 // ---------------------------------- //
 // ---------------------------------- //
 // ---------------------------------- //

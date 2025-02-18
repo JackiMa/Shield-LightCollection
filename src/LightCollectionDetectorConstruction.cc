@@ -373,6 +373,10 @@ void LightCollectionDetectorConstruction::ConstructSDandField()
     primitive = new PassingEnergyScorer_Secondary("PassingEnergy_Secondary", layer_name);
     shield_layer->RegisterPrimitive(primitive);
 
+    // 自上而下穿过该层的次级粒子总能量的探测器(Truely，避免多次散射多次穿越时的重复统计)
+    primitive = new TruelyPassingEnergyScorer_Secondary("TruelyPassingEnergy_Secondary", layer_name);
+    shield_layer->RegisterPrimitive(primitive);
+
     // 中子探测器
     primitive = new NeutronScorer("NeutronEnergy");
     shield_layer->RegisterPrimitive(primitive);

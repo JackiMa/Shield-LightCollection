@@ -82,6 +82,21 @@ private:
     G4String scorerName;
 };
 
+class TruelyPassingEnergyScorer_Secondary : public G4VPrimitiveScorer {
+    // 用于记录穿越该层次级粒子的总能量，注意，会比上面的多增加一个判断：确保能量只统计一份
+public:
+    TruelyPassingEnergyScorer_Secondary(const G4String& name,const G4String& scorer, G4int depth = 0);
+    virtual ~TruelyPassingEnergyScorer_Secondary();
+
+    virtual G4bool ProcessHits(G4Step* aStep, G4TouchableHistory*) override;
+    virtual void Initialize(G4HCofThisEvent* HCE) override;
+    virtual void EndOfEvent(G4HCofThisEvent* HCE) override;
+
+private:
+    G4THitsMap<G4double>* fHitsMap;
+    G4String scorerName;
+};
+
 class ElectronEnergyScorer : public G4VPrimitiveScorer {
 public:
     ElectronEnergyScorer(const G4String& name, G4int depth = 0);

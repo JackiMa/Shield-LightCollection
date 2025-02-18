@@ -78,6 +78,7 @@ void LightCollectionSteppingAction::UserSteppingAction(const G4Step* step)
         // 如果母粒子有标记，则继承
         if(parentInfo) {
             childInfo->InheritPassedLayers(parentInfo);
+            childInfo->InheritPassedLayers_secondary(parentInfo);
         }
 
         // 将 trackInfo 附加到二次粒子

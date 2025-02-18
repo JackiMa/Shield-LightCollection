@@ -72,6 +72,7 @@ LightCollectionRunAction::LightCollectionRunAction(LightCollectionPrimaryGenerat
     analysisManager->CreateNtupleDColumn("PassingEnergy"); // 穿过当前层的总能谱
     analysisManager->CreateNtupleDColumn("TruelyPassingEnergy"); // 穿过当前层的总能谱(Truely, 不包括多次穿越的重复统计)
     analysisManager->CreateNtupleDColumn("PassingEnergy_Secondary"); // 穿过当前层的次级射线能谱
+    analysisManager->CreateNtupleDColumn("TruelyPassingEnergy_Secondary"); // 穿过当前层的次级射线能谱(Truely, 不包括多次穿越的重复统计)
     analysisManager->CreateNtupleDColumn("HEphotonEnergy"); // 当前层产生并出射的次级gamma能谱
     analysisManager->CreateNtupleDColumn("NeutronEnergy"); // 当前层产生并出射的次级中子能谱
     analysisManager->FinishNtuple();

@@ -1,3 +1,9 @@
+# 2025年2月18日 update
+- 新增了若干闪烁体可供选择
+    但是请注意 **没有仔细设置光学性质**，使用时请务必注意。
+    另外，这些材料的光产额可能也需要在使用时手动指定更符合需求的值
+- 新增了TruelyPassingEnergyScorer_Secondary，逻辑和TruelyPassingEnergyScorer类似
+
 # 2024年12月22日 update
 更新了TruelyPassingEnergyScorer，从而实现只统计从当前层（从上向下）离开的总能量，避免了重复统计。  
 该功能代码涉及到：`CustomScorer.hh/cc, MyTrackInfo.hh/cc, MyTrackingAction.hh/cc, LightCollectionSteppingAction/cc`  
@@ -33,3 +39,9 @@
 - ScintillationWavelength: 从闪烁体进入到光纤的光谱
 #### SourcePosition
 - 所抽样的放射源位置分布
+
+## 使用方法
+- 在 `include/config.hh` 中配置需要设置的几何体和相应要求
+- `make -j8` 编译
+- `./LightCollection` GUI界面运行
+- `./LightCollection -m **path/to/mac**` 按照宏文件mac运行
