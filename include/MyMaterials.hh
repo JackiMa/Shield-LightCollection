@@ -9,6 +9,8 @@
 #include "G4ElementTable.hh"
 #include "G4OpticalSurface.hh"
 
+// !! Please check if the light yield is correct before using.
+
 
 class MyMaterials
 {
@@ -39,14 +41,23 @@ public:
   static G4Material* CopperTungstenAlloy(const G4double& WFrac);
   static G4Material* Quartz();
   static G4Material* OpticalGrease();
-  static G4Material* LSO();
+
+
+  static G4Material* BaF2(double user_lightyield,double scaleFactor,double user_birks); // !! 光学性质照抄LYSO
+  static G4Material* NaI_Tl(double user_lightyield,double scaleFactor,double user_birks); // !! 光学性质照抄LYSO
+  static G4Material* CsI_Tl(double user_lightyield,double scaleFactor,double user_birks); // !! 光学性质照抄LYSO
+  static G4Material* CsI(double user_lightyield,double scaleFactor,double user_birks); // !! 光学性质照抄LYSO
+  static G4Material* GOS(double user_lightyield,double scaleFactor,double user_birks); // !! 光学性质照抄BGO
+  static G4Material* LSO(double user_lightyield,double scaleFactor,double user_birks); // !! 光学性质照抄LYSO
+  static G4Material* YSO(double user_lighyield,double scaleFactor,double user_birks);
   static G4Material* LYSO(double user_lightyield,double scaleFactor,double user_birks);
-  static G4Material* LuAG_Ce(); //
-  static G4Material* LuAG_Pr();
-  static G4Material* DSB_Ce();
-  static G4Material* SiO2_Ce();
+  static G4Material* LuAG_Ce(double user_lightyield,double scaleFactor,double user_birks); //
+  static G4Material* LuAG_Pr(double user_lightyield,double scaleFactor,double user_birks);
+  static G4Material* DSB_Ce(double user_lightyield,double scaleFactor,double user_birks);
+  static G4Material* SiO2_Ce(double user_lightyield,double scaleFactor,double user_birks);
   static G4Material* BGO            (double user_lightyield,double scaleFactor,double user_birks);
   static G4Material* PWO            (double user_lightyield,double scaleFactor,double user_birks);
+  static G4Material* CWO            (double user_lightyield,double scaleFactor,double user_birks); // !! 光学性质照抄PWO
   static G4Material* YAG_Ce         (double user_lightyield,double scaleFactor,double user_birks);
   static G4Material* GAGG_Ce_Mg     (double user_lightyield,double scaleFactor,double user_birks);
   static G4Material* GAGG_ILM       (double user_lightyield,double scaleFactor,double user_birks);

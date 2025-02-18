@@ -20,8 +20,8 @@ struct ShieldLayer {
 // g_ means global_
 
 // switch
-inline G4bool g_has_opticalPhysics = false;  // 是否模拟光学过程
-inline G4bool g_has_cherenkov = true;       // 是否考虑切伦科夫光
+inline G4bool g_has_opticalPhysics = true;  // 是否模拟光学过程
+inline G4bool g_has_cherenkov = false;       // 是否考虑切伦科夫光
 
 /*
         ↑ z
@@ -42,19 +42,30 @@ inline G4Material *g_world_material = MyMaterials::Vacuum();
 // shield = n*layers
 inline G4double g_shieldX = 0.99 * g_worldX;
 inline G4double g_shieldY = 0.99 * g_worldY;
+inline G4double lightyield = 1;
 inline std::vector<ShieldLayer> g_custom_shield = {     // 自定义遮挡层
     {1*um, MyMaterials::Vacuum()},
-    {0.1*mm, MyMaterials::Copper()},
-    {0.1*mm, MyMaterials::Copper()},
-    {0.1*mm, MyMaterials::Copper()},
-    {0.1*mm, MyMaterials::Copper()},
-    {0.1*mm, MyMaterials::Copper()},
-    {0.1*mm, MyMaterials::Copper()},
-    {0.1*mm, MyMaterials::Copper()},
-    {0.1*mm, MyMaterials::Copper()},
-    {0.1*mm, MyMaterials::Copper()},
-    {0.1*mm, MyMaterials::Copper()},
-    {0.1*mm, MyMaterials::Copper()}
+    {0.01*mm, MyMaterials::Copper()},
+    {0.01*mm, MyMaterials::BGO(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::NaI_Tl(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::CsI(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::CsI_Tl(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::BaF2(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::PWO(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::YAG_Ce(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::GFAG(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::GYAGG(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::GAGG_Ce_Mg(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::GAGG_ILM(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::GAGG_slow(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::GAGG_very_fast(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::Polystyrene(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::LSO(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::LuAG_Ce(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::LuAG_Pr(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::DSB_Ce(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::LYSO(lightyield,1,-1)},
+    {0.01*mm, MyMaterials::SiO2_Ce(lightyield,1,-1)}
 
     }; 
 inline G4int g_shield_layers = g_custom_shield.size();                                                             // 遮挡层层数n
