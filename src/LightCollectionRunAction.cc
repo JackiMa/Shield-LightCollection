@@ -44,6 +44,8 @@
 #include "G4AnalysisManager.hh"
 #include "G4AccumulableManager.hh"
 
+#include "LightCollectionRunActionMessenger.hh"
+
 #include "config.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -51,6 +53,10 @@ LightCollectionRunAction::LightCollectionRunAction(LightCollectionPrimaryGenerat
     : G4UserRunAction(), fRun(nullptr), fPrimary(prim)
 {
 
+  // 创建Messenger
+  fMessenger = new LightCollectionRunActionMessenger(this);
+  fSaveFileName = "LightCollection"; // 默认文件名
+  
   auto analysisManager = G4AnalysisManager::Instance();
   analysisManager->SetVerboseLevel(1);
   analysisManager->SetNtupleMerging(true);
@@ -87,7 +93,9 @@ LightCollectionRunAction::LightCollectionRunAction(LightCollectionPrimaryGenerat
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-LightCollectionRunAction::~LightCollectionRunAction() {}
+LightCollectionRunAction::~LightCollectionRunAction() {
+  delete fMessenger;
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 G4Run *LightCollectionRunAction::GenerateRun()
@@ -123,7 +131,7 @@ void LightCollectionRunAction::BeginOfRunAction(const G4Run *)
   //
   auto analysisManager = G4AnalysisManager::Instance();
 
-  G4String fileName = getNewfileName("LYsimulations");
+  G4String fileName = getNewfileName(fSaveFileName);
   if (!analysisManager->OpenFile(fileName))
   {
     G4cerr << "Error: could not open file " << fileName << G4endl;

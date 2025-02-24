@@ -39,8 +39,9 @@
 #include "G4Accumulable.hh"
 #include <fstream>
 
-
 #include "G4AnalysisManager.hh"
+
+#include "LightCollectionRunActionMessenger.hh"
 
 class LightCollectionPrimaryGeneratorAction;
 class LightCollectionRun;
@@ -59,9 +60,14 @@ class LightCollectionRunAction : public G4UserRunAction
   void BeginOfRunAction(const G4Run*) override;
   void EndOfRunAction(const G4Run*) override;
 
+  void SetFileName(const G4String& name) { fSaveFileName = name; } // set file name
+
  private:
   LightCollectionRun* fRun;
   LightCollectionPrimaryGeneratorAction* fPrimary;
+
+  G4String fSaveFileName;  // 存放输出文件名
+  LightCollectionRunActionMessenger * fMessenger; // 运行动作的消息处理器 
 
   std::ofstream outputFile;
 

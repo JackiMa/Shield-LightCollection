@@ -8,6 +8,8 @@
 /run/initialize
 /LightCollection/generator/useParticleGun true
 
+/MySim/setSaveName test-100
+
 # 设置初级粒子为伽马射线
 # /gun/particle gamma
 /gun/particle proton

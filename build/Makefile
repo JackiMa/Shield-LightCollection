@@ -493,6 +493,33 @@ src/LightCollectionRunAction.cc.s:
 	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/LightCollectionRunAction.cc.s
 .PHONY : src/LightCollectionRunAction.cc.s
 
+src/LightCollectionRunActionMessenger.o: src/LightCollectionRunActionMessenger.cc.o
+
+.PHONY : src/LightCollectionRunActionMessenger.o
+
+# target to build an object file
+src/LightCollectionRunActionMessenger.cc.o:
+	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/LightCollectionRunActionMessenger.cc.o
+.PHONY : src/LightCollectionRunActionMessenger.cc.o
+
+src/LightCollectionRunActionMessenger.i: src/LightCollectionRunActionMessenger.cc.i
+
+.PHONY : src/LightCollectionRunActionMessenger.i
+
+# target to preprocess a source file
+src/LightCollectionRunActionMessenger.cc.i:
+	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/LightCollectionRunActionMessenger.cc.i
+.PHONY : src/LightCollectionRunActionMessenger.cc.i
+
+src/LightCollectionRunActionMessenger.s: src/LightCollectionRunActionMessenger.cc.s
+
+.PHONY : src/LightCollectionRunActionMessenger.s
+
+# target to generate assembly for a file
+src/LightCollectionRunActionMessenger.cc.s:
+	$(MAKE) -f CMakeFiles/LightCollection.dir/build.make CMakeFiles/LightCollection.dir/src/LightCollectionRunActionMessenger.cc.s
+.PHONY : src/LightCollectionRunActionMessenger.cc.s
+
 src/LightCollectionStackingAction.o: src/LightCollectionStackingAction.cc.o
 
 .PHONY : src/LightCollectionStackingAction.o
@@ -704,6 +731,9 @@ help:
 	@echo "... src/LightCollectionRunAction.o"
 	@echo "... src/LightCollectionRunAction.i"
 	@echo "... src/LightCollectionRunAction.s"
+	@echo "... src/LightCollectionRunActionMessenger.o"
+	@echo "... src/LightCollectionRunActionMessenger.i"
+	@echo "... src/LightCollectionRunActionMessenger.s"
 	@echo "... src/LightCollectionStackingAction.o"
 	@echo "... src/LightCollectionStackingAction.i"
 	@echo "... src/LightCollectionStackingAction.s"
