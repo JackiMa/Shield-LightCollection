@@ -56,7 +56,7 @@ LightCollectionRunAction::LightCollectionRunAction(LightCollectionPrimaryGenerat
   // 创建Messenger
   fMessenger = new LightCollectionRunActionMessenger(this);
   fSaveFileName = "LightCollection"; // 默认文件名
-  
+
   auto analysisManager = G4AnalysisManager::Instance();
   analysisManager->SetVerboseLevel(1);
   analysisManager->SetNtupleMerging(true);
@@ -130,7 +130,7 @@ void LightCollectionRunAction::BeginOfRunAction(const G4Run *)
   // Open an output file
   //
   auto analysisManager = G4AnalysisManager::Instance();
-
+  
   G4String fileName = getNewfileName(fSaveFileName);
   if (!analysisManager->OpenFile(fileName))
   {
@@ -200,9 +200,17 @@ bool LightCollectionRunAction::fileExists(const G4String &fileName)
 G4String LightCollectionRunAction::getNewfileName(G4String baseFileName)
 {
   G4String fileExtension = ".root";
+  
+  // 如果 baseFileName 包含扩展名，则先去掉扩展名
+  size_t pos = baseFileName.rfind(fileExtension);
+  if (pos != std::string::npos && pos == baseFileName.length() - fileExtension.length())
+  {
+    baseFileName = baseFileName.substr(0, pos);
+  }
+
   G4String fileName;
   int fileIndex = 0;
-
+  
   do
   {
     std::stringstream ss;

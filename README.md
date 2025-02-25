@@ -1,3 +1,12 @@
+TODO：
+python自动化，光学过程下，自动提取 两个光子数的结果 文件
+
+# 2025年2月25日 update
+- 新增了python自动化的脚本，具体见文件scripts/auto_python/Geant4_BatchDataProc.ipynb
+    - 使用方法：
+        1. 在“加载环境和基础设置”中，设置好对应的路径名。默认就可以
+        2. 在“实际使用”中，设置待仿真的各种调节。程序会自动遍历生成所有需要仿真的任务
+
 # 2025年2月24日 update
 - 更新了在mac文件对设置保存文件名的支持
     - 改动: 新增了RunActionMessenger
