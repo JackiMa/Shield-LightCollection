@@ -8,17 +8,17 @@
 /run/initialize
 /LightCollection/generator/useParticleGun true
 
-/MySim/setSaveName test-100
+/MySim/setSaveName e-_10.0MeV_10000_YAGCe_0.01_2000
 
 # 设置初级粒子为伽马射线
 # /gun/particle gamma
-/gun/particle proton
+/gun/particle e-
 
 # 每次事件生成的粒子数
 # /gun/particle/number 1
 
 # 设置每次gamma的能量
-/gun/energy 100 MeV
+/gun/energy 10.0 MeV
 
 # 设置运行次数
 /run/beamOn 1000

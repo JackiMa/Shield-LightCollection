@@ -1032,7 +1032,7 @@ G4Material *MyMaterials::YAG_Ce(double user_lightyield, double scaleFactor, doub
   G4double a, z, density;
 
   G4Element *Y = new G4Element("Silicon", "Y", z = 39., a = 88.01 * g / mole);
-  G4Element *Al = new G4Element("Aluminium", "Al", z = 13., a = 28.09 * g / mole);
+  G4Element *Al = new G4Element("Aluminium", "Al", z = 13., a = 26.98 * g / mole);
   G4Element *O = new G4Element("Oxygen", "O", z = 8., a = 16.00 * g / mole);
 
   G4Material *mat = new G4Material("YAG_Ce", density = 4.6 * g / cm3, 3);
@@ -1454,7 +1454,7 @@ G4Material *MyMaterials::LuAG_Ce(double user_lightyield, double scaleFactor, dou
   G4double a, z, density;
   G4Element *O = new G4Element("Oxygen", "O", z = 8., a = 16.00 * g / mole);
   G4Element *Lu = new G4Element("Lutetium", "Lu", z = 71., a = 174.97 * g / mole);
-  G4Element *Al = new G4Element("Aluminum", "Al", z = 27., a = 28.09 * g / mole);
+  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 26.98 * g / mole);
 
   G4Material *mat = new G4Material("LuAG_Ce", density = 6.7 * g / cm3, 3);
   mat->AddElement(Lu, 3);
@@ -1650,7 +1650,7 @@ G4Material *MyMaterials::LuAG_Pr(double user_lightyield, double scaleFactor, dou
   G4double a, z, density;
   G4Element *O = new G4Element("Oxygen", "O", z = 8., a = 16.00 * g / mole);
   G4Element *Lu = new G4Element("Lutetium", "Lu", z = 71., a = 174.97 * g / mole);
-  G4Element *Al = new G4Element("Aluminum", "Al", z = 27., a = 28.09 * g / mole);
+  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 26.98 * g / mole);
 
   G4Material *mat = new G4Material("LuAG_Pr", density = 6.7 * g / cm3, 3);
   mat->AddElement(Lu, 3);
@@ -1731,7 +1731,7 @@ G4Material *MyMaterials::NaI_Tl(double user_lightyield, double scaleFactor, doub
 
   G4double a, z, density;
   G4Element *Na = new G4Element("Sodium", "Na", z = 11., a = 22.99 * g / mole);
-  G4Element *I = new G4Element("Iodine", "I", z = 53., a = 53 * g / mole);
+  G4Element *I = new G4Element("Iodine", "I", z = 53., a = 126.9 * g / mole);
 
   G4Material *mat = new G4Material("NaI_Tl", density = 3.67 * g / cm3, 2, kStateSolid);
   mat->AddElement(Na, 1);
@@ -1835,7 +1835,7 @@ G4Material *MyMaterials::CsI_Tl(double user_lightyield, double scaleFactor, doub
 
   G4double a, z, density;
   G4Element *Cs = new G4Element("Caesium", "Cs", z = 55., a = 132.91 * g / mole);
-  G4Element *I = new G4Element("Iodine", "I", z = 53., a = 53 * g / mole);
+  G4Element *I = new G4Element("Iodine", "I", z = 53., a = 126.9 * g / mole);
 
   G4Material *mat = new G4Material("CsI_Tl", density = 4.51 * g / cm3, 2, kStateSolid);
   mat->AddElement(Cs, 1);
@@ -1939,7 +1939,7 @@ G4Material *MyMaterials::CsI(double user_lightyield, double scaleFactor, double 
 
   G4double a, z, density;
   G4Element *Cs = new G4Element("Caesium", "Cs", z = 55., a = 132.91 * g / mole);
-  G4Element *I = new G4Element("Iodine", "I", z = 53., a = 53 * g / mole);
+  G4Element *I = new G4Element("Iodine", "I", z = 53., a = 126.9 * g / mole);
 
   G4Material *mat = new G4Material("CsI", density = 4.51 * g / cm3, 2, kStateSolid);
   mat->AddElement(Cs, 1);
@@ -3214,7 +3214,7 @@ double lightyield = (user_lightyield == -1) ? standard_light_yield : user_lighty
   G4Element *O = new G4Element("Oxygen", "O", z = 8., a = 16.00 * g / mole);
   G4Element *Ga = new G4Element("Gallium", "Ga", z = 31., a = 69.723 * g / mole);
   G4Element *Gd = new G4Element("Gadolinio", "Gd", z = 64., a = 157.25 * g / mole);
-  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 28.09 * g / mole);
+  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 26.98 * g / mole);
 
   G4Material *mat = new G4Material("GAGG_Ce_Mg", density = 6.63 * g / cm3, 4);
   mat->AddElement(Ga, 3);
@@ -3409,7 +3409,7 @@ double lightyield = (user_lightyield == -1) ? standard_light_yield : user_lighty
   G4Element *O = new G4Element("Oxygen", "O", z = 8., a = 16.00 * g / mole);
   G4Element *Ga = new G4Element("Gallium", "Ga", z = 31., a = 69.723 * g / mole);
   G4Element *Gd = new G4Element("Gadolinio", "Gd", z = 64., a = 157.25 * g / mole);
-  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 28.09 * g / mole);
+  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 26.98 * g / mole);
 
   G4Material *mat = new G4Material("GAGG_ILM", density = 6.63 * g / cm3, 4);
   mat->AddElement(Ga, 3);
@@ -3612,7 +3612,7 @@ double lightyield = (user_lightyield == -1) ? standard_light_yield : user_lighty
   G4Element *O = new G4Element("Oxygen", "O", z = 8., a = 16.00 * g / mole);
   G4Element *Ga = new G4Element("Gallium", "Ga", z = 31., a = 69.723 * g / mole);
   G4Element *Gd = new G4Element("Gadolinio", "Gd", z = 64., a = 157.25 * g / mole);
-  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 28.09 * g / mole);
+  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 26.98 * g / mole);
 
   G4Material *mat = new G4Material("GAGG_very_fast", density = 6.63 * g / cm3, 4);
   mat->AddElement(Ga, 3);
@@ -3808,7 +3808,7 @@ double lightyield = (user_lightyield == -1) ? standard_light_yield : user_lighty
   G4Element *O = new G4Element("Oxygen", "O", z = 8., a = 16.00 * g / mole);
   G4Element *Ga = new G4Element("Gallium", "Ga", z = 31., a = 69.723 * g / mole);
   G4Element *Gd = new G4Element("Gadolinio", "Gd", z = 64., a = 157.25 * g / mole);
-  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 28.09 * g / mole);
+  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 26.98 * g / mole);
 
   G4Material *mat = new G4Material("GYAGG", density = 6.63 * g / cm3, 4);
   mat->AddElement(Ga, 3);
@@ -4006,7 +4006,7 @@ double lightyield = (user_lightyield == -1) ? standard_light_yield : user_lighty
   G4Element *O = new G4Element("Oxygen", "O", z = 8., a = 16.00 * g / mole);
   G4Element *Ga = new G4Element("Gallium", "Ga", z = 31., a = 69.723 * g / mole);
   G4Element *Gd = new G4Element("Gadolinio", "Gd", z = 64., a = 157.25 * g / mole);
-  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 28.09 * g / mole);
+  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 26.98 * g / mole);
 
   G4Material *mat = new G4Material("GFAG", density = 6.63 * g / cm3, 4);
   mat->AddElement(Ga, 3);
@@ -4203,7 +4203,7 @@ double lightyield = (user_lightyield == -1) ? standard_light_yield : user_lighty
   G4Element *O = new G4Element("Oxygen", "O", z = 8., a = 16.00 * g / mole);
   G4Element *Ga = new G4Element("Gallium", "Ga", z = 31., a = 69.723 * g / mole);
   G4Element *Gd = new G4Element("Gadolinio", "Gd", z = 64., a = 157.25 * g / mole);
-  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 28.09 * g / mole);
+  G4Element *Al = new G4Element("Aluminum", "Al", z = 13., a = 26.98 * g / mole);
 
   G4Material *mat = new G4Material("GAGG_slow", density = 6.63 * g / cm3, 4);
   mat->AddElement(Ga, 3);
