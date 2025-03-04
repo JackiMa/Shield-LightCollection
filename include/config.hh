@@ -20,7 +20,7 @@ struct ShieldLayer {
 // g_ means global_
 
 // switch
-inline G4bool g_has_opticalPhysics = false;  // 是否模拟光学过程
+inline G4bool g_has_opticalPhysics = true;  // 是否模拟光学过程
 inline G4bool g_has_cherenkov = false;       // 是否考虑切伦科夫光
 
 /*
@@ -45,85 +45,7 @@ inline G4double g_shieldY = 0.99 * g_worldY;
 inline G4double lightyield = 1;
 inline G4double thickness = 0.01*mm;
 inline std::vector<ShieldLayer> g_custom_shield = {     // 自定义遮挡层
-    {1*um, MyMaterials::Vacuum()},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::BGO(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::NaI_Tl(lightyield,1,-1)},
-    {thickness, MyMaterials::CsI(lightyield,1,-1)},
-    {thickness, MyMaterials::CsI_Tl(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::BaF2(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::PWO(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::YAG_Ce(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GFAG(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GYAGG(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GAGG_Ce_Mg(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GAGG_ILM(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GAGG_slow(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GAGG_very_fast(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::Polystyrene(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::LSO(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::LuAG_Ce(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::LuAG_Pr(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::DSB_Ce(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::LYSO(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::SiO2_Ce(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::BGO(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::NaI_Tl(lightyield,1,-1)},
-    {thickness, MyMaterials::CsI(lightyield,1,-1)},
-    {thickness, MyMaterials::CsI_Tl(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::BaF2(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::PWO(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::YAG_Ce(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GFAG(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GYAGG(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GAGG_Ce_Mg(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GAGG_ILM(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GAGG_slow(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::GAGG_very_fast(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::Polystyrene(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::LSO(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::LuAG_Ce(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::LuAG_Pr(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::DSB_Ce(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::LYSO(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()},
-    {thickness, MyMaterials::SiO2_Ce(lightyield,1,-1)},
-    {thickness, MyMaterials::Copper()}
-
+    {1*um, MyMaterials::Vacuum()}
     }; 
 inline G4int g_shield_layers = g_custom_shield.size();                                                             // 遮挡层层数n
 inline G4double g_shield_thickness = std::accumulate(g_custom_shield.begin(), g_custom_shield.end(), 0.0, [](double sum, const ShieldLayer& layer) {return sum + layer.thickness;});
@@ -132,7 +54,7 @@ inline G4ThreeVector g_shield_pos = G4ThreeVector(0, 0, 0.4 * g_worldZ - g_shiel
 // scintillator = crystal + wrapper
 // 闪烁体实际的尺寸是 scintillator - 2*g_sc_wrapper_thickness
 inline G4bool g_is_Tub_sc = false; // 闪烁体是否是圆柱形的。圆柱形时只考虑沿X轴读出
-inline G4int g_lg_orientation = 1; // 0: 沿X轴读出，1: 沿Z轴读出
+inline G4int g_lg_orientation = 0; // 0: 沿X轴读出，1: 沿Z轴读出
 inline G4double g_scintillatorY = 1.71 * cm;
 inline G4double g_scintillatorZ = 0.21 * cm;
 inline G4double g_scintillatorR = 1 * cm;                                                                              // 径向
@@ -148,7 +70,7 @@ inline G4ThreeVector g_crystal_pos = G4ThreeVector(0, 0, g_sc_wrapper_thickness)
 // fiber实际的尺寸是 fiber_d =  g_lightguide_d - 2*g_lg_wrapper_thickness
 inline G4double g_lg_wrapper_thickness = 450 * um;                // 光导封装层厚度
 inline G4double g_lightguide_length = 1 * cm;                     // 光导长度
-inline G4double g_lightguide_d = 25 * um + 2*g_lg_wrapper_thickness; // 光导半径
+inline G4double g_lightguide_d = 5000 * um + 2*g_lg_wrapper_thickness; // 光导半径
 inline G4ThreeVector g_lightguide_pos = g_scintillator_pos;       // 光导位置，相对闪烁体
 inline G4Material *g_lg_fiber_material = MyMaterials::Quartz();   // 光导材料
 inline G4Material *g_lg_wrapper_material = MyMaterials::PVC();    // 光导封装层材料，PVC的折射率数值给的随意供参考

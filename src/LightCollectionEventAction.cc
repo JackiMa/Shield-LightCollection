@@ -114,7 +114,7 @@ void LightCollectionEventAction::EndOfEventAction(const G4Event *event)
 
   processedTrackIDs.clear(); // 清空已处理的 track ID (用于统计哪些光子进入数值孔径)
     // Print per event (modulo n)
-    // 判断是否是主进程，在主进程中打印进度
+    // 打印进度
     if (1) {
       auto eventID = event->GetEventID();
       auto totalEvents = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
