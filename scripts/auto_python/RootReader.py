@@ -56,7 +56,8 @@ class RootData:
         # print(f"File contains {len(self.H1)} H1 histograms.")
         # print(f"File contains 1 H2 histogram.")
         
-        
+    def get_h1_data(self, h1_name):
+        return self.H1[h1_name]
 
     def plot_ntuple(self, indices_to_plot=None):
         if indices_to_plot is None:

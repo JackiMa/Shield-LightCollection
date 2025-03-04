@@ -1,5 +1,6 @@
-TODO：
-python自动化，光学过程下，自动提取 两个光子数的结果 文件
+# 2025年3月4日 update
+- 在python自动化脚本中，新增了提取光收集数据并整理到csv的功能
+- 修复了之前“引入次级粒子判断”导致的进入数值孔径光子数统计错误的bug
 
 # 2025年2月25日 update
 - 新增了python自动化的脚本，具体见文件scripts/auto_python/Geant4_BatchDataProc.ipynb
