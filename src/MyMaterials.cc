@@ -3206,7 +3206,7 @@ G4Material *MyMaterials::GAGG_Ce_Mg(double user_lightyield, double scaleFactor, 
   // ### - Absorption calculated measuring transmission of different ILM GAGG:Ce (not codoped!) in Lab 27, CERN.      N. Kratochwil, L. Martinazzoli    (2019)
   // ########
 
-  double standard_light_yield = 40000.0;
+double standard_light_yield = 40000.0;
   
 double lightyield = (user_lightyield == -1) ? standard_light_yield : user_lightyield;
 

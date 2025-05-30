@@ -12,7 +12,7 @@
 
 # 设置初级粒子为伽马射线
 # /gun/particle gamma
-/gun/particle e-
+/gun/particle proton
 
 # 每次事件生成的粒子数
 # /gun/particle/number 1
@@ -21,4 +21,4 @@
 /gun/energy 1.0 MeV
 
 # 设置运行次数
-/run/beamOn 100
+/run/beamOn 1000

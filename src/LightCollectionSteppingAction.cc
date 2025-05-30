@@ -146,8 +146,17 @@ void LightCollectionSteppingAction::UserSteppingAction(const G4Step *step)
         if (fEventAction->processedTrackIDs.find(trackID) == fEventAction->processedTrackIDs.end())
         {
 
+
             G4double energy = aTrack->GetTotalEnergy();
             G4double wavelength = (1239.841939 * CLHEP::nm) / energy; // 将能量转换为波长
+
+            if (g_forced_collection_p > 0 && G4UniformRand() < g_forced_collection_p) // 如果强制收集所有光子，则直接记录并返回
+            {
+                auto analysisManager = G4AnalysisManager::Instance();
+                analysisManager->FillH1(2, wavelength);
+                fEventAction->processedTrackIDs.insert(trackID);
+                return;
+            }
 
             // 获取折射率
             G4MaterialPropertyVector *rv_Outside = preStepPoint->GetMaterial()->GetMaterialPropertiesTable()->GetProperty("RINDEX");
@@ -181,22 +190,8 @@ void LightCollectionSteppingAction::UserSteppingAction(const G4Step *step)
             // 根据折射率计算极限角
             G4double criticalAngle = std::asin(NA / n_Outside);
 
-            // G4cout << "Photon ID: " << aTrack->GetTrackID() << G4endl;
-            // G4cout << "Photon Energy: " << energy << " eV" << G4endl;
-            // G4cout << "Photon Wavelength: " << (1239.841939 * nm) / energy << " nm" << G4endl;
-            // G4cout << "n_Outside: " << n_Outside << G4endl;
-            // G4cout << "n_fiber_core: " << n_fiber_core << G4endl;
-            // G4cout << "n_fiber_wrapper: " << n_fiber_wrapper << G4endl;
-            // G4cout << "Numerical Aperture (NA): " << NA << G4endl;
-            // G4cout << "Photon Direction: " << photonDirection << G4endl;
-            // G4cout << "Surface Normal: " << normal << G4endl;
-            // G4cout << "cosTheta: " << cosTheta << G4endl;
-            // G4cout << "Incident Angle: " << theta / CLHEP::deg << " degrees" << G4endl;
-            // G4cout << "Critical Angle: " << criticalAngle / CLHEP::deg << " degrees" << G4endl;
-
             if (theta < criticalAngle)
             {
-                // G4cout << "Photon ID: " << trackID << " is accepted" << G4endl;
 
                 auto analysisManager = G4AnalysisManager::Instance();
                 analysisManager->FillH1(2, wavelength);

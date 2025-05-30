@@ -70,7 +70,7 @@ inline G4ThreeVector g_crystal_pos = G4ThreeVector(0, 0, g_sc_wrapper_thickness)
 // fiber实际的尺寸是 fiber_d =  g_lightguide_d - 2*g_lg_wrapper_thickness
 inline G4double g_lg_wrapper_thickness = 450 * um;                // 光导封装层厚度
 inline G4double g_lightguide_length = 1 * cm;                     // 光导长度
-inline G4double g_lightguide_d = 5000 * um + 2*g_lg_wrapper_thickness; // 光导半径
+inline G4double g_lightguide_d = 300 * um + 2*g_lg_wrapper_thickness; // 光导半径
 inline G4ThreeVector g_lightguide_pos = g_scintillator_pos;       // 光导位置，相对闪烁体
 inline G4Material *g_lg_fiber_material = MyMaterials::Quartz();   // 光导材料
 inline G4Material *g_lg_wrapper_material = MyMaterials::PVC();    // 光导封装层材料，PVC的折射率数值给的随意供参考
@@ -78,6 +78,8 @@ inline G4int g_lg_nums = 1;                                       // 光导数�
 inline G4double g_lg_gap = 1.1 * g_lightguide_d;                  // 光导间隙，应大于光导直径
 inline G4double g_lg_depth = 0.618 * cm;                          // 穿过depth的光子才被计数
 inline G4double g_lg_na = -1;                                     // 光导数值孔径。-1表示根据前面定义的材料和实际光子能量进行计算
+// !! 强迫光纤收集光子的概率（启用时覆盖掉数值孔径的逻辑），
+inline G4double g_forced_collection_p = -1; // <=0表示不强制收集,>=1表示强制收集所有光子
 
 // surface
 inline G4OpticalSurface *surf_Teflon = MyMaterials::surf_Teflon();
